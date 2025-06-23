@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tuyển dụng tại Tập đoàn 99 - Chế độ Lương và Phúc lợi</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa; /* Light grey background */
+        }
+        .container {
+            max-width: 900px; /* Wider container for better layout */
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        h1, h2, h3 {
+            color: #0056b3;
+            margin-bottom: 15px;
+        }
+        .section {
+            background-color: #fff; /* Default background for sections */
+            border-radius: 8px;
+            padding: 25px; /* More padding */
+            margin-bottom: 25px; /* More margin */
+        }
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            padding-left: 0;
+        }
+        p strong {
+            color: #d32f2f;
+        }
+        .contact {
+            background-color: #e6f7ff; /* Keeping original contact section background */
+            border-left: 5px solid #0056b3;
+            padding: 15px;
+        }
+        .text-center {
+            text-align: center;
+        }
+
+        /* CSS cho tất cả hình ảnh trong phần nội dung: thu gọn và cùng kích cỡ */
+        .section img:not(.telegram-animated-icon):not(.navbar-brand img) { /* Loại trừ các icon Telegram và logo navbar */
+            width: 100%; /* Đảm bảo hình ảnh co giãn theo chiều rộng của container */
+            max-width: 600px; /* Giới hạn chiều rộng tối đa */
+            height: 300px; /* Đặt chiều cao cố định cho tất cả ảnh */
+            object-fit: cover; /* Cắt ảnh để vừa với kích thước mà không bị méo */
+            border-radius: 8px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            display: block; /* Để margin auto có tác dụng */
+            margin-left: auto; /* Căn giữa hình ảnh */
+            margin-right: auto; /* Căn giữa hình ảnh */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Thêm transition */
+        }
+
+        .section img:not(.telegram-animated-icon):not(.navbar-brand img):hover {
+            transform: scale(1.03); /* Phóng to nhẹ khi hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Đổ bóng mạnh hơn khi hover */
+        }
+
+        /* Custom CSS cho nút "Ứng tuyển ngay" */
+        .btn-apply-telegram {
+            background-color: #28a745; /* Màu xanh lá cây */
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.1em;
+            border-radius: 5px;
+            text-decoration: none; /* Bỏ gạch chân cho link */
+            display: inline-block; /* Để padding và margin có tác dụng */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-apply-telegram:hover {
+            background-color: #218838; /* Màu xanh đậm hơn khi hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            color: white; /* Đảm bảo màu chữ không đổi khi hover */
+        }
+
+        /* CSS cho nút liên hệ Telegram (nút nhỏ hơn) */
+        .btn-contact-telegram-styled {
+            background-color: #0088cc; /* Màu xanh của Telegram */
+            color: white;
+            border: none;
+            padding: 10px 20px; /* Kích cỡ nhỏ hơn */
+            font-size: 1em;
+            border-radius: 5px;
+            text-decoration: none; /* Bỏ gạch chân cho link */
+            display: inline-flex; /* Để icon và text cùng dòng và căn giữa */
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s ease;
+            margin-top: 10px; /* Khoảng cách từ chữ xuống nút */
+        }
+
+        .btn-contact-telegram-styled:hover {
+            background-color: #007bb5; /* Màu xanh đậm hơn khi hover */
+            color: white; /* Đảm bảo màu chữ không đổi khi hover */
+        }
+
+        /* Hiệu ứng hover cho phần Lưu ý */
+        .note-section-item {
+            background-color: #f0f8ff; /* Màu nền nhẹ ban đầu */
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .note-section-item:hover {
+            background-color: #e0f2f7; /* Màu nền nổi bật hơn khi hover */
+            transform: translateY(-3px); /* Nhích lên một chút */
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15); /* Đổ bóng mạnh hơn */
+        }
+
+        /* CSS mới cho hiệu ứng hover của từng vị trí lương */
+        .position-salary-card {
+            background-color: #fbfbfb; /* Màu nền nhẹ nhàng cho mỗi card */
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        .position-salary-card:hover {
+            transform: translateY(-5px); /* Nổi lên khi hover */
+            background-color: #f0f8ff; /* Thay đổi màu nền khi hover */
+        }
+
+        .position-salary-card h3 {
+            color: #0056b3; /* Đảm bảo màu tiêu đề vị trí */
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .position-salary-card ul {
+            list-style: none; /* Bỏ dấu chấm đầu dòng mặc định */
+            padding-left: 0;
+        }
+        .position-salary-card ul li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 20px; /* Khoảng cách cho icon */
+        }
+        .position-salary-card ul li::before {
+            content: "•"; /* Dùng ký tự chấm làm icon */
+            color: #0056b3; /* Màu của icon */
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+
+        /* CSS cho các nhãn (trước dấu :) */
+        .label-bold-italic {
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        /* CSS cho các con số (tiền lương, thưởng) */
+        .number-highlight {
+            color: #cc0000; /* Màu đỏ đậm đẹp */
+            font-weight: bold;
+            font-size: 1.05em; /* Lớn hơn một chút để nổi bật */
+        }
+
+        /* Styles for the new Telegram animated icons */
+        /* Adjusted positioning for more precise control using position utilities */
+        .telegram-animated-icon {
+            width: 70px; /* Kích thước icon Telegram phóng to hơn */
+            height: 70px;
+            border-radius: 50%; /* Bo tròn thành hình tròn */
+            object-fit: cover; /* Đảm bảo ảnh vẫn hiển thị tốt trong hình tròn */
+            animation: pulse 1.5s infinite ease-in-out; /* Áp dụng hiệu ứng pulse nhanh hơn */
+            box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.4); /* Shadow ban đầu cho hiệu ứng pulse */
+            transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Hiệu ứng chuyển động mượt mà khi hover */
+            cursor: pointer; /* Biến con trỏ thành bàn tay */
+            /* Removed absolute positioning for images that should be in normal flow */
+            /* Use d-block and mx-auto for centering in their parent div */
+        }
+
+        .telegram-animated-icon:hover {
+            transform: scale(1.1); /* Phóng to khi hover */
+            filter: brightness(1.2); /* Sáng hơn khi hover */
+            box-shadow: 0 0 15px 5px rgba(0, 136, 204, 0.6); /* Đổ bóng mạnh hơn và có màu khi hover */
+        }
+
+        /* Keyframes for the pulsing animation */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.4);
+            }
+            70% { /* Đỉnh của hiệu ứng nhấp nháy */
+                transform: scale(1.05);
+                box-shadow: 0 0 0 10px rgba(0, 136, 204, 0); /* Lan rộng và mờ dần */
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0);
+            }
+        }
+
+        /* Để các nút ví dụ không ảnh hưởng đến thiết kế chính */
+        .btn-example {
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .btn-example.btn-primary:hover {
+            background-color: #0056b3; /* Darker blue */
+            color: #fff;
+        }
+
+        .btn-example.btn-secondary:hover {
+            background-color: #5a6268; /* Darker grey */
+            color: #fff;
+        }
+
+        .btn-example.btn-info:hover {
+            background-color: #117a8b; /* Darker cyan */
+            color: #fff;
+        }
+
+        /* NEW CSS: Opacity Success Backgrounds */
+        /* Màu Bootstrap 'success' là #d4edda */
+        .bg-success-default {
+            background-color: #d4edda; /* Default Bootstrap success background */
+        }
+        .bg-success-75 {
+            background-color: rgba(212, 237, 218, 0.75); /* 75% opacity */
+        }
+        .bg-success-50 {
+            background-color: rgba(212, 237, 218, 0.50); /* 50% opacity */
+        }
+        .bg-success-25 {
+            background-color: rgba(212, 237, 218, 0.25); /* 25% opacity */
+        }
+        .bg-success-10 {
+            background-color: rgba(212, 237, 218, 0.10); /* 10% opacity */
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #2c3e50; /* Dark blue/grey background for professionalism */
+            color: #ecf0f1; /* Light text color */
+            padding: 40px 0;
+            margin-top: 50px; /* Space above footer */
+            font-size: 0.9em;
+        }
+        .footer h5 {
+            color: #3498db; /* Bright blue for headings */
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer ul li {
+            margin-bottom: 10px;
+        }
+        .footer ul li a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer ul li a:hover {
+            color: #3498db; /* Hover effect for links */
+        }
+        .footer .social-icons a {
+            color: #ecf0f1;
+            font-size: 1.5em;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .footer .social-icons a:hover {
+            color: #3498db;
+        }
+        .footer .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* Custom styles for language flags */
+        .lang-flag {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            margin-right: 5px;
+            border: 1px solid #ddd;
+        }
+
+        /* Navbar Customization */
+        /* Logo animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); } /* Slightly more prominent float */
+            100% { transform: translateY(0px); }
+        }
+
+        .navbar-brand img {
+            height: 45px; /* Slightly larger logo */
+            margin-right: 10px;
+            animation: float 3s ease-in-out infinite; /* Slower, smoother float */
+            box-shadow: 0 0 15px rgba(255, 200, 0, 0.7); /* Yellow/orange glow to match logo */
+            border-radius: 5px; /* Slight roundness for the logo image itself, if it's square/rectangular */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar-brand img:hover {
+            transform: scale(1.05); /* Zoom slightly on hover */
+            box-shadow: 0 0 25px rgba(255, 200, 0, 1); /* Brighter glow on hover */
+        }
+
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease, transform 0.3s ease, background-color 0.3s ease; /* Add background transition */
+            padding: 10px 15px; /* Add some padding for better hover area */
+            border-radius: 5px; /* Slight roundness for hover background */
+            margin: 0 5px; /* Space between nav items */
+            color: #ecf0f1; /* Ensure default color for dark navbar */
+        }
+        .navbar-nav .nav-link:hover {
+            color: #3498db !important; /* Bright blue for hover */
+            transform: translateY(-3px); /* More noticeable lift */
+            background-color: rgba(52, 152, 219, 0.2); /* Subtle blue highlight */
+        }
+
+        /* Ensure current active link is distinct */
+        .navbar-nav .nav-link.active {
+            color: #3498db !important; /* Bright blue for active link */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="logo_tapdoan_99.png" alt="Company Logo">
+                </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#top"><i class="bi bi-globe"></i> Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#muc-luong"><i class="bi bi-briefcase-fill"></i> Đãi ngộ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#thoi-gian-lam-viec"><i class="bi bi-building-fill"></i> Văn phòng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#che-do-coc"><i class="bi bi-shield-fill-check"></i> Đặt cọc</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lien-he"><i class="bi bi-headphones"></i> Liên hệ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="https://flagicons.lipis.dev/flags/4x3/vn.svg" alt="Vietnamese Flag" class="lang-flag">
+                            Ngôn ngữ
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="#"><img src="https://flagicons.lipis.dev/flags/4x3/vn.svg" alt="Vietnamese Flag" class="lang-flag">Tiếng Việt</a></li>
+                            
+                            <li><a class="dropdown-item" href="#" data-lang="zh-CN"><img src="https://flagicons.lipis.dev/flags/4x3/cn.svg" alt="Chinese Flag" class="lang-flag">中文 (Tiếng Trung)</a></li>
+                            <li><a class="dropdown-item" href="#" data-lang="km-KH"><img src="https://flagicons.lipis.dev/flags/4x3/kh.svg" alt="Cambodian Flag" class="lang-flag">ភាសាខ្មែរ (Tiếng Khmer)</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="alert alert-info alert-dismissible fade show mt-3" role="alert" data-i18n="alert-message">
+            <i class="bi bi-info-circle-fill me-2"></i>
+            <strong>Thông báo quan trọng:</strong> Vui lòng đọc kỹ các điều khoản về lương và phúc lợi trước khi ứng tuyển.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="section text-center bg-success-default shadow-sm position-relative">
+            <h1 class="mb-4" data-i18n="salary-title">Chế độ Lương Tập đoàn 99</h1>
+            <p data-i18n="salary-description">Tập đoàn 99 cam kết cung cấp một hệ thống lương công bằng và cạnh tranh, nhằm thu hút, khuyến khích và giữ chân nhân tài xuất sắc.</p>
+            <a href="https://t.me/Lu98899" target="_blank" class="btn-apply-telegram mb-3" data-i18n="apply-now-button">Ứng tuyển ngay!</a>
+            <div class="mt-3"> <a href="https://t.me/Lu98899" target="_blank" class="d-inline-block">
+                    <img src="hinhanh_telegram.png" alt="Liên hệ Telegram ngay" class="telegram-animated-icon">
+                </a>
+            </div>
+        </div>
+
+        <div class="section bg-success-75 shadow" id="muc-luong">
+            <h2 data-i18n="salary-positions-title">Mức lương cho tất cả các vị trí:</h2>
+            <p data-i18n="probation-note">(<span class="label-bold-italic">Thời gian thử việc</span>: <span class="number-highlight">2 tháng</span>, <span class="label-bold-italic">tiền lương tính bằng</span> <span class="number-highlight">USD</span>)</p>
+
+            <div class="position-salary-card shadow-sm">
+                <h3 data-i18n="position-customer-service">Chăm sóc khách hàng:</h3>
+                <ul>
+                    <li><span class="label-bold-italic" data-i18n="salary-starting">Mức khởi điểm</span>: <span class="number-highlight">$1200</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-probation-duration">Thời gian thử việc</span>: <span class="number-highlight">2 tháng</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-after-probation">Sau khi chuyển chính thức</span>: Tăng <span class="number-highlight">$100</span> mỗi tháng, tối đa <span class="number-highlight">$1700</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-diligence-bonus">Thưởng chuyên cần</span>: <span class="number-highlight">$100</span> (nếu không nghỉ ngày nào)</li>
+                    <li><span class="label-bold-italic" data-i18n="salary-kpi-bonus">Thưởng KPI vị trí</span>: <span class="number-highlight">$100 - $200</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-profit-bonus">Thêm thưởng lợi nhuận</span></li>
+                </ul>
+            </div>
+
+            <div class="position-salary-card shadow-sm">
+                <h3 data-i18n="position-deposit-withdrawal">Nhân viên Xuất nhập khoản :</h3>
+                <ul>
+                    <li><span class="label-bold-italic" data-i18n="salary-starting">Mức khởi điểm</span>: <span class="number-highlight">$1100</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-probation-duration">Thời gian thử việc</span>: <span class="number-highlight">2 tháng</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-after-probation">Sau khi chuyển chính thức</span>: Tăng <span class="number-highlight">$100</span> mỗi tháng</li>
+                    <li><span class="label-bold-italic" data-i18n="salary-diligence-bonus">Thưởng chuyên cần</span>: <span class="number-highlight">$100</span> (nếu không nghỉ ngày nào)</li>
+                    <li><span class="label-bold-italic" data-i18n="salary-kpi-bonus">Thưởng KPI vị trí</span>: <span class="number-highlight">$100 - $200</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-profit-bonus">Thêm thưởng lợi nhuận</span></li>
+                </ul>
+            </div>
+
+            <div class="position-salary-card shadow-sm">
+                <h3 data-i18n="position-team-leader">Trưởng nhóm:</h3>
+                <ul>
+                    <li><span class="label-bold-italic" data-i18n="salary-starting">Mức khởi điểm</span>: <span class="number-highlight">$1400</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-probation-duration">Thời gian thử việc</span>: <span class="number-highlight">2 tháng</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-after-probation">Sau khi chuyển chính thức</span>: Tăng <span class="number-highlight">$100</span> mỗi tháng, tối đa <span class="number-highlight">$1900</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-diligence-bonus">Thưởng chuyên cần</span>: <span class="number-highlight">$100</span> (nếu không nghỉ ngày nào)</li>
+                    <li><span class="label-bold-italic" data-i18n="salary-kpi-bonus">Thưởng KPI vị trí</span>: <span class="number-highlight">$100 - $300</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-profit-bonus">Thêm thưởng lợi nhuận</span></li>
+                </ul>
+            </div>
+
+            <div class="position-salary-card shadow-sm">
+                <h3 data-i18n="position-manager">Quản lý:</h3>
+                <ul>
+                    <li><span class="label-bold-italic" data-i18n="salary-starting">Mức khởi điểm</span>: <span class="number-highlight">$1700</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-probation-duration">Thời gian thử việc</span>: <span class="number-highlight">2 tháng</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-after-probation">Sau khi chuyển chính thức</span>: Tăng <span class="number-highlight">$200</span> mỗi tháng, tối đa <span class="number-highlight">$2500</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-diligence-bonus">Thưởng chuyên cần</span>: <span class="number-highlight">$100</span> (nếu không nghỉ ngày nào)</li>
+                    <li><span class="label-bold-italic" data-i18n="salary-kpi-bonus">Thưởng KPI vị trí</span>: <span class="number-highlight">$100 - $500</span></li>
+                    <li><span class="label-bold-italic" data-i18n="salary-profit-bonus">Thêm thưởng lợi nhuận</span></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section bg-success-50 shadow-lg">
+            <h2 data-i18n="rest-policy-title">Chế độ nghỉ ngơi:</h2>
+            <p data-i18n="rest-policy-description">Được nghỉ <span class="number-highlight">2 ngày</span> mỗi tháng. Nếu không nghỉ ngày nào trong tháng, bạn sẽ nhận được <span class="label-bold-italic">thưởng chuyên cần</span> <span class="number-highlight">$100</span>. Nếu cần nghỉ, phải nộp đơn xin trước một tuần cho quản lý.</p>
+            <div class="text-center">
+                <img src="phonghop.jpg" alt="Phòng họp Tập đoàn 99">
+                <small class="text-muted" data-i18n="image-caption-meeting-room">Hình ảnh phòng họp</small>
+            </div>
+        </div>
+
+        <div class="section bg-success-25 shadow" id="thoi-gian-lam-viec">
+            <h2 data-i18n="work-time-location-title">I. Thời gian làm việc và Địa điểm làm việc:</h2>
+            <ul>
+                <li><span class="label-bold-italic" data-i18n="work-time">Thời gian làm việc</span>: <span class="number-highlight">10:00 - 22:00</span> / <span class="number-highlight">22:00 - 10:00</span></li>
+                <li><span class="label-bold-italic" data-i18n="work-shift-system">Chế độ làm việc</span>: Đổi ca <span class="number-highlight">12 giờ</span></li>
+                <li><span class="label-bold-italic" data-i18n="work-location">Địa điểm</span>: Campuchia</li>
+            </ul>
+            <div class="text-center">
+                <img src="vanphong_lamviec.jpeg" alt="Văn phòng làm việc Tập đoàn 99">
+                <small class="text-muted" data-i18n="image-caption-office">Hình ảnh văn phòng làm việc</small>
+            </div>
+        </div>
+
+        <div class="section bg-success-10 shadow-sm">
+            <h2 data-i18n="benefits-title">II. Phúc lợi:</h2>
+            <ul>
+                <li><span class="label-bold-italic" data-i18n="benefits-annual-bonus">Làm việc đủ một năm</span> sẽ được <span class="label-bold-italic">thưởng một tháng lương</span> (thưởng cuối năm hay còn gọi là <span class="label-bold-italic">lương tháng 13</span>).</li>
+                <li><span class="label-bold-italic" data-i18n="benefits-birthday-bonus">Tiền mừng sinh nhật</span> <span class="number-highlight">$100</span>.</li>
+                <li><span class="label-bold-italic" data-i18n="benefits-company-provided">Công ty cung cấp</span> chỗ ở, bữa ăn và visa làm việc tại Campuchia.</li>
+                <li><span class="label-bold-italic" data-i18n="benefits-salary-payment">Lương được trả</span> vào cuối mỗi tháng, có thể chọn nhận bằng tiền mặt hoặc USDT.</li>
+            </ul>
+        </div>
+
+        <div class="section bg-success-default shadow" id="che-do-coc">
+            <h2 data-i18n="deposit-policy-title">Chế độ đặt cọc:</h2>
+            <ul>
+                <li><span class="label-bold-italic" data-i18n="deposit-amount">Mỗi tháng</span> sẽ đặt cọc <span class="number-highlight">$200</span>, tổng số tiền đặt cọc tối đa bằng <span class="label-bold-italic">một tháng lương cơ bản</span>.</li>
+                <li><span class="label-bold-italic" data-i18n="deposit-refund">Số tiền này</span> sẽ được hoàn trả đầy đủ khi nghỉ việc theo đúng quy định.</li>
+                <li><span class="label-bold-italic" data-i18n="deposit-resignation-notice">Cần nộp đơn xin nghỉ việc</span> trước một tháng.</li>
+                <li>(<span class="label-bold-italic" data-i18n="deposit-probation-failed">Thời gian thử việc</span> là <span class="number-highlight">2 tháng</span>. Nếu đánh giá thử việc không đạt, công ty sẽ sắp xếp cho bạn trở về, chi phí tự túc.)</li>
+            </ul>
+            <div class="text-center">
+                <img src="phongdaotao.jpg" alt="Phòng đào tạo Tập đoàn 99">
+                <small class="text-muted" data-i18n="image-caption-training-room">Hình ảnh phòng đào tạo</small>
+            </div>
+        </div>
+
+        <div class="section bg-success-75 shadow-lg">
+            <h2 data-i18n="note-title">Lưu ý:</h2>
+            <div class="note-section-item">
+                <p data-i18n="note-personal-resignation"><span class="label-bold-italic">Nếu nhân viên nghỉ việc vì lý do cá nhân trong thời gian thử việc</span>, <span class="label-bold-italic">lương cơ bản</span> sẽ được tính theo mức <strong><span class="number-highlight">$800</span></strong>.</p>
+            </div>
+            <div class="note-section-item">
+                <p data-i18n="note-termination-serious-violation"><span class="label-bold-italic">Nếu nhân viên bị sa thải vì vi phạm nghiêm trọng các quy định trong thời gian thử việc</span>, <span class="label-bold-italic">lương</span> sẽ <strong>không được thanh toán</strong>.</p>
+            </div>
+        </div>
+
+        <div class="contact section text-center shadow-lg" id="lien-he">
+            <p data-i18n="contact-telegram-heading"><strong>Liên hệ Nhân sự, telegram:</strong></p>
+            <a href="https://t.me/Lu98899" target="_blank" class="btn-contact-telegram-styled">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-telegram me-2" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.287 5.906q-1.168.421-2.28 1.18-.573.389-1.18.844-.925.724-1.786 1.434-.118.097-.24.195a.5.5 0 0 0-.154.557c.074.254.34.364.654.249l1.799-.819c.35-.153.723-.186 1.07-.099l.346.076c.46.103.657.6.445 1.013-.07.16-.382.321-.8.51-.66.3-1.348.529-2.058.654-.1.015-.195.034-.29.052a.5.5 0 0 0-.416.592c.07.3.38.453.67.31L8.002 8.35q1.123-.5 2.066-1.054c.41-.233.785-.502 1.15-.777l2.275-1.536c.264-.178.356-.445.242-.716-.16-.337-.52-.52-.891-.393z"/>
+                </svg>
+                <span data-i18n="contact-telegram-button">Nhắn tin Telegram</span>
+            </a>
+            <a href="https://t.me/Lu98899" target="_blank" class="d-block mx-auto" style="width: 70px; height: 70px; margin-top: 15px;">
+                <img src="hinhanh_telegram_2.jpeg" alt="Telegram liên hệ" class="telegram-animated-icon">
+            </a>
+        </div>
+
+        <div class="section text-center shadow-sm">
+            <h2 data-i18n="info-channels-title">Các kênh thông tin:</h2>
+            <button type="button" class="btn btn-primary btn-example" data-i18n="news-cambodia"><i class="bi bi-newspaper me-2"></i>Tin tức Campuchia</button>
+            <button type="button" class="btn btn-secondary btn-example" data-i18n="news-philippines"><i class="bi bi-newspaper me-2"></i>Tin tức Philipin</button>
+            <button type="button" class="button btn-info btn-example" data-i18n="news-thailand"><i class="bi bi-newspaper me-2"></i>Tin tức Thái Lan</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 data-i18n="footer-about-us-title">Về Tập đoàn 99</h5>
+                    <p data-i18n="footer-about-us-description">Chúng tôi là Tập đoàn 99, cam kết mang đến những cơ hội nghề nghiệp vượt trội với chế độ đãi ngộ hấp dẫn và môi trường làm việc chuyên nghiệp, phát triển.</p>
+                </div>
+
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 data-i18n="footer-quick-links-title">Liên kết nhanh</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#top" data-i18n="nav-home">Trang chủ</a></li>
+                        <li><a href="#muc-luong" data-i18n="nav-benefits">Đãi ngộ</a></li>
+                        <li><a href="#thoi-gian-lam-viec" data-i18n="nav-office">Văn phòng</a></li>
+                        <li><a href="#che-do-coc" data-i18n="nav-deposit">Đặt cọc</a></li>
+                        <li><a href="#lien-he" data-i18n="nav-contact">Liên hệ</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h5 data-i18n="footer-contact-us-title">Liên hệ chúng tôi</h5>
+                    <ul class="list-unstyled">
+                        <li><i class="bi bi-geo-alt-fill me-2"></i><span data-i18n="footer-location">Địa điểm</span>: Campuchia</li>
+                        <li><i class="bi bi-telegram me-2"></i>Telegram: <a href="https://t.me/Lu98899" target="_blank">@Lu98899</a></li>
+                        <li><i class="bi bi-envelope-fill me-2"></i>Email: tuyendung@tapdoan99.com</li>
+                        <li><i class="bi bi-phone-fill me-2"></i><span data-i18n="footer-phone">Điện thoại</span>: +63 927 925 0054 (Anna 佳怡)</li>
+                    </ul>
+                    <div class="social-icons mt-3">
+                        <a href="https://t.me/Lu98899" target="_blank" title="Telegram"><i class="bi bi-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2025</span> Tập đoàn 99. <span data-i18n="footer-copyright">Mọi quyền được bảo lưu.</span></p>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        // Set current year to 2025
+        document.getElementById('current-year').innerText = new Date().getFullYear();
+
+        const translations = {
+            "vi": {
+                "alert-message": "<strong>Thông báo quan trọng:</strong> Vui lòng đọc kỹ các điều khoản về lương và phúc lợi trước khi ứng tuyển.",
+                "salary-title": "Chế độ Lương Tập đoàn 99",
+                "salary-description": "Tập đoàn 99 cam kết cung cấp một hệ thống lương công bằng và cạnh tranh, nhằm thu hút, khuyến khích và giữ chân nhân tài xuất sắc.",
+                "apply-now-button": "Ứng tuyển ngay!",
+                "salary-positions-title": "Mức lương cho tất cả các vị trí:",
+                "probation-note": "(<span class='label-bold-italic'>Thời gian thử việc</span>: <span class='number-highlight'>2 tháng</span>, <span class='label-bold-italic'>tiền lương tính bằng</span> <span class='number-highlight'>USD</span>)",
+                "position-customer-service": "Chăm sóc khách hàng:",
+                "position-deposit-withdrawal": "Nhân viên Xuất nhập khoản :",
+                "position-team-leader": "Trưởng nhóm:",
+                "position-manager": "Quản lý:",
+                "salary-starting": "Mức khởi điểm",
+                "salary-probation-duration": "Thời gian thử việc",
+                "salary-after-probation": "Sau khi chuyển chính thức",
+                "salary-diligence-bonus": "Thưởng chuyên cần",
+                "salary-kpi-bonus": "Thưởng KPI vị trí",
+                "salary-profit-bonus": "Thêm thưởng lợi nhuận",
+                "rest-policy-title": "Chế độ nghỉ ngơi:",
+                "rest-policy-description": "Được nghỉ <span class='number-highlight'>2 ngày</span> mỗi tháng. Nếu không nghỉ ngày nào trong tháng, bạn sẽ nhận được <span class='label-bold-italic'>thưởng chuyên cần</span> <span class='number-highlight'>$100</span>. Nếu cần nghỉ, phải nộp đơn xin trước một tuần cho quản lý.",
+                "image-caption-meeting-room": "Hình ảnh phòng họp",
+                "work-time-location-title": "I. Thời gian làm việc và Địa điểm làm việc:",
+                "work-time": "Thời gian làm việc",
+                "work-shift-system": "Chế độ làm việc",
+                "work-location": "Địa điểm",
+                "image-caption-office": "Hình ảnh văn phòng làm việc",
+                "benefits-title": "II. Phúc lợi:",
+                "benefits-annual-bonus": "Làm việc đủ một năm sẽ được thưởng một tháng lương (thưởng cuối năm hay còn gọi là lương tháng 13).",
+                "benefits-birthday-bonus": "Tiền mừng sinh nhật",
+                "benefits-company-provided": "Công ty cung cấp chỗ ở, bữa ăn và visa làm việc tại Campuchia.",
+                "benefits-salary-payment": "Lương được trả vào cuối mỗi tháng, có thể chọn nhận bằng tiền mặt hoặc USDT.",
+                "deposit-policy-title": "Chế độ đặt cọc:",
+                "deposit-amount": "Mỗi tháng sẽ đặt cọc",
+                "deposit-refund": "Số tiền này sẽ được hoàn trả đầy đủ khi nghỉ việc theo đúng quy định.",
+                "deposit-resignation-notice": "Cần nộp đơn xin nghỉ việc trước một tháng.",
+                "deposit-probation-failed": "(Thời gian thử việc là <span class='number-highlight'>2 tháng</span>. Nếu đánh giá thử việc không đạt, công ty sẽ sắp xếp cho bạn trở về, chi phí tự túc.)",
+                "image-caption-training-room": "Hình ảnh phòng đào tạo",
+                "note-title": "Lưu ý:",
+                "note-personal-resignation": "<span class='label-bold-italic'>Nếu nhân viên nghỉ việc vì lý do cá nhân trong thời gian thử việc</span>, <span class='label-bold-italic'>lương cơ bản</span> sẽ được tính theo mức <strong><span class='number-highlight'>$800</span></strong>.",
+                "note-termination-serious-violation": "<span class='label-bold-italic'>Nếu nhân viên bị sa thải vì vi phạm nghiêm trọng các quy định trong thời gian thử việc</span>, <span class='label-bold-italic'>lương</span> sẽ <strong>không được thanh toán</strong>.",
+                "contact-telegram-heading": "<strong>Liên hệ Nhân sự, telegram:</strong>",
+                "contact-telegram-button": "Nhắn tin Telegram",
+                "info-channels-title": "Các kênh thông tin:",
+                "news-cambodia": "Tin tức Campuchia",
+                "news-philippines": "Tin tức Philipin",
+                "news-thailand": "Tin tức Thái Lan",
+                "footer-about-us-title": "Về Tập đoàn 99",
+                "footer-about-us-description": "Chúng tôi là Tập đoàn 99, cam kết mang đến những cơ hội nghề nghiệp vượt trội với chế độ đãi ngộ hấp dẫn và môi trường làm việc chuyên nghiệp, phát triển.",
+                "footer-quick-links-title": "Liên kết nhanh",
+                "nav-home": "Trang chủ",
+                "nav-benefits": "Đãi ngộ",
+                "nav-office": "Văn phòng",
+                "nav-deposit": "Đặt cọc",
+                "nav-contact": "Liên hệ",
+                "footer-contact-us-title": "Liên hệ chúng tôi",
+                "footer-location": "Địa điểm",
+                "footer-phone": "Điện thoại",
+                "footer-copyright": "Mọi quyền được bảo lưu."
+            },
+            "zh-CN": {
+                "alert-message": "<strong>重要通知:</strong> 请在申请前仔细阅读薪资和福利条款。",
+                "salary-title": "99集团薪资制度",
+                "salary-description": "99集团致力于提供公平且有竞争力的薪资体系，以吸引、激励和留住优秀人才。",
+                "apply-now-button": "立即申请！",
+                "salary-positions-title": "所有职位的薪资：",
+                "probation-note": "(<span class='label-bold-italic'>试用期</span>: <span class='number-highlight'>2个月</span>, <span class='label-bold-italic'>薪资以</span> <span class='number-highlight'>美元</span>计算)",
+                "position-customer-service": "客户服务:",
+                "position-deposit-withdrawal": "出入款员工:",
+                "position-team-leader": "组长:",
+                "position-manager": "管理层:",
+                "salary-starting": "起始薪资",
+                "salary-probation-duration": "试用期",
+                "salary-after-probation": "转正后",
+                "salary-diligence-bonus": "全勤奖",
+                "salary-kpi-bonus": "职位绩效奖金",
+                "salary-profit-bonus": "额外利润奖金",
+                "rest-policy-title": "休息制度:",
+                "rest-policy-description": "每月休息 <span class='number-highlight'>2天</span>。如果当月未请假，您将获得 <span class='label-bold-italic'>全勤奖</span> <span class='number-highlight'>$100</span>。如需请假，需提前一周向经理提交申请。",
+                "image-caption-meeting-room": "会议室图片",
+                "work-time-location-title": "一、工作时间和地点:",
+                "work-time": "工作时间",
+                "work-shift-system": "工作制度",
+                "work-location": "地点",
+                "image-caption-office": "办公室工作环境图片",
+                "benefits-title": "二、福利:",
+                "benefits-annual-bonus": "工作满一年将获得一个月的工资作为奖励（年终奖，也称第13个月工资）。",
+                "benefits-birthday-bonus": "生日贺金",
+                "benefits-company-provided": "公司提供柬埔寨住宿、膳食和工作签证。",
+                "benefits-salary-payment": "工资在每月月底支付，可选择现金或USDT接收。",
+                "deposit-policy-title": "押金制度:",
+                "deposit-amount": "每月将缴纳押金",
+                "deposit-refund": "根据规定离职时，押金将全额退还。",
+                "deposit-resignation-notice": "需提前一个月提交离职申请。",
+                "deposit-probation-failed": "(试用期为 <span class='number-highlight'>2个月</span>。如果试用期评估不合格，公司将安排您回国，费用自理。)",
+                "image-caption-training-room": "培训室图片",
+                "note-title": "注意:",
+                "note-personal-resignation": "<span class='label-bold-italic'>如果员工在试用期内因个人原因离职</span>，<span class='label-bold-italic'>基本工资</span>将按 <strong><span class='number-highlight'>$800</span></strong> 计算。",
+                "note-termination-serious-violation": "<span class='label-bold-italic'>如果员工在试用期内因严重违反规定而被解雇</span>，<span class='label-bold-italic'>工资</span>将 <strong>不予支付</strong>。",
+                "contact-telegram-heading": "<strong>联系人事，telegram:</strong>",
+                "contact-telegram-button": "发送Telegram消息",
+                "info-channels-title": "信息渠道:",
+                "news-cambodia": "柬埔寨新闻",
+                "news-philippines": "菲律宾新闻",
+                "news-thailand": "泰国新闻",
+                "footer-about-us-title": "关于99集团",
+                "footer-about-us-description": "我们是99集团，致力于通过有吸引力的薪资待遇和专业的、发展的环境，提供卓越的职业机会。",
+                "footer-quick-links-title": "快速链接",
+                "nav-home": "首页",
+                "nav-benefits": "福利",
+                "nav-office": "办公室",
+                "nav-deposit": "押金",
+                "nav-contact": "联系我们",
+                "footer-contact-us-title": "联系我们",
+                "footer-location": "地点",
+                "footer-phone": "电话",
+                "footer-copyright": "保留所有权利。"
+            },
+            "km-KH": {
+                "alert-message": "<strong>សេចក្តីជូនដំណឹងសំខាន់:</strong> សូមអានលក្ខខណ្ឌប្រាក់ខែ និងអត្ថប្រយោជន៍ឲ្យបានច្បាស់លាស់មុននឹងដាក់ពាក្យ។",
+                "salary-title": "របបប្រាក់ខែរបស់ក្រុមហ៊ុន 99",
+                "salary-description": "ក្រុមហ៊ុន 99 ប្តេជ្ញាផ្តល់ប្រព័ន្ធប្រាក់ខែប្រកួតប្រជែង និងយុត្តិធម៌ ដើម្បីទាក់ទាញ លើកទឹកចិត្ត និងរក្សាទុកបុគ្គលិកដែលមានសមត្ថភាពខ្ពស់។",
+                "apply-now-button": "ដាក់ពាក្យឥឡូវនេះ!",
+                "salary-positions-title": "កម្រិតប្រាក់ខែសម្រាប់គ្រប់មុខតំណែង:",
+                "probation-note": "(<span class='label-bold-italic'>រយៈពេលសាកល្បង</span>: <span class='number-highlight'>2 ខែ</span>, <span class='label-bold-italic'>ប្រាក់ខែគិតជា</span> <span class='number-highlight'>USD</span>)",
+                "position-customer-service": "ផ្នែកបម្រើអតិថិជន:",
+                "position-deposit-withdrawal": "បុគ្គលិកផ្នែកដាក់ដកប្រាក់ :",
+                "position-team-leader": "ប្រធានក្រុម:",
+                "position-manager": "អ្នកគ្រប់គ្រង:",
+                "salary-starting": "កម្រិតចាប់ផ្តើម",
+                "salary-probation-duration": "រយៈពេលសាកល្បង",
+                "salary-after-probation": "បន្ទាប់ពីក្លាយជាបុគ្គលិកពេញសិទ្ធិ",
+                "salary-diligence-bonus": "ប្រាក់រង្វាន់ឧស្សាហ៍ព្យាយាម",
+                "salary-kpi-bonus": "ប្រាក់រង្វាន់ KPI មុខតំណែង",
+                "salary-profit-bonus": "ប្រាក់រង្វាន់ចំណេញបន្ថែម",
+                "rest-policy-title": "របបឈប់សម្រាក:",
+                "rest-policy-description": "ទទួលបានការឈប់សម្រាក <span class='number-highlight'>2 ថ្ងៃ</span> ក្នុងមួយខែ។ ប្រសិនបើមិនឈប់សម្រាកទេក្នុងមួយខែ នឹងទទួលបាន <span class='label-bold-italic'>ប្រាក់រង្វាន់ឧស្សាហ៍ព្យាយាម</span> <span class='number-highlight'>$100</span>។ ប្រសិនបើត្រូវការឈប់សម្រាក ត្រូវដាក់ពាក្យសុំមុនមួយសប្តាហ៍ទៅអ្នកគ្រប់គ្រង។",
+                "image-caption-meeting-room": "រូបភាពបន្ទប់ប្រជុំ",
+                "work-time-location-title": "I. ម៉ោងធ្វើការ និងទីតាំងធ្វើការ:",
+                "work-time": "ម៉ោងធ្វើការ",
+                "work-shift-system": "របបធ្វើការ",
+                "work-location": "ទីតាំង",
+                "image-caption-office": "រូបភាពការិយាល័យធ្វើការ",
+                "benefits-title": "II. អត្ថប្រយោជន៍:",
+                "benefits-annual-bonus": "ធ្វើការគ្រប់មួយឆ្នាំ នឹងទទួលបានប្រាក់ខែមួយខែជាប្រាក់រង្វាន់ (ប្រាក់រង្វាន់ចុងឆ្នាំ ឬប្រាក់ខែទី 13)។",
+                "benefits-birthday-bonus": "ប្រាក់ខែខួបកំណើត",
+                "benefits-company-provided": "ក្រុមហ៊ុនផ្តល់កន្លែងស្នាក់នៅ អាហារ និងទិដ្ឋាការធ្វើការនៅកម្ពុជា។",
+                "benefits-salary-payment": "ប្រាក់ខែនឹងត្រូវបើកនៅចុងខែនីមួយៗ អាចជ្រើសរើសទទួលជាសាច់ប្រាក់ ឬ USDT។",
+                "deposit-policy-title": "របបប្រាក់កក់:",
+                "deposit-amount": "រៀងរាល់ខែនឹងកក់",
+                "deposit-refund": "ទឹកប្រាក់នេះនឹងត្រូវប្រគល់ជូនវិញពេញលេញនៅពេលលាឈប់ពីការងារស្របតាមបទប្បញ្ញត្តិ។",
+                "deposit-resignation-notice": "ត្រូវដាក់ពាក្យសុំឈប់សម្រាកមុនមួយខែ។",
+                "deposit-probation-failed": "(រយៈពេលសាកល្បងគឺ <span class='number-highlight'>2 ខែ</span>។ ប្រសិនបើការវាយតម្លៃសាកល្បងមិនឆ្លើយតបតាមតម្រូវការ ក្រុមហ៊ុននឹងរៀបចំឲ្យអ្នកត្រឡប់ទៅវិញ ដោយចេញថ្លៃចំណាយដោយខ្លួនឯង។)",
+                "image-caption-training-room": "រូបភាពបន្ទប់បណ្តុះបណ្តាល",
+                "note-title": "ចំណាំ:",
+                "note-personal-resignation": "<span class='label-bold-italic'>ប្រសិនបើបុគ្គលិកលាឈប់ពីការងារដោយហេតុផលផ្ទាល់ខ្លួនក្នុងអំឡុងពេលសាកល្បង</span> <span class='label-bold-italic'>ប្រាក់ខែមូលដ្ឋាន</span> នឹងត្រូវគិតក្នុងអត្រា <strong><span class='number-highlight'>$800</span></strong>។",
+                "note-termination-serious-violation": "<span class='label-bold-italic'>ប្រសិនបើបុគ្គលិកត្រូវបានបណ្តេញចេញដោយសារការរំលោភបំពានធ្ងន់ធ្ងរលើបទប្បញ្ញត្តិក្នុងអំឡôngពេលសាកល្បង</span> <span class='label-bold-italic'>ប្រាក់ខែ</span> នឹង <strong>មិនត្រូវបានបើកឲ្យទេ</strong>។",
+                "contact-telegram-heading": "<strong>ទំនាក់ទំនងផ្នែកធនធានមនុស្ស, Telegram:</strong>",
+                "contact-telegram-button": "ផ្ញើសារ Telegram",
+                "info-channels-title": "បណ្តាញព័ត៌មាន:",
+                "news-cambodia": "ព័ត៌មានកម្ពុជា",
+                "news-philippines": "ព័ត៌មានហ្វីលីពីន",
+                "news-thailand": "ព័ត៌មានថៃ",
+                "footer-about-us-title": "អំពីក្រុមហ៊ុន 99",
+                "footer-about-us-description": "យើងខ្ញុំជាក្រុមហ៊ុន 99 ប្តេជ្ញាផ្តល់ឱកាសការងារដ៏ល្អប្រសើរជាមួយនឹងរបបប្រាក់ខែដ៏ទាក់ទាញ និងបរិយាកាសការងារប្រកបដោយវិជ្ជាជីវៈ និងការអភិវឌ្ឍន៍។",
+                "footer-quick-links-title": "តំណភ្ជាប់រហ័ស",
+                "nav-home": "ទំព័រដើម",
+                "nav-benefits": "អត្ថប្រយោជន៍",
+                "nav-office": "ការិយាល័យ",
+                "nav-deposit": "ប្រាក់កក់",
+                "nav-contact": "ទំនាក់ទំនង",
+                "footer-contact-us-title": "ទំនាក់ទំនងពួកយើង",
+                "footer-location": "ទីតាំង",
+                "footer-phone": "ទូរស័ព្ឍ",
+                "footer-copyright": "រក្សាសិទ្ធិគ្រប់យ៉ាង។"
+            }
+        };
+
+        function setLanguage(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.dataset.i18n;
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Update main nav links if needed (they don't have data-i18n directly)
+            document.querySelector('.navbar-nav [href="#top"]').innerHTML = `<i class="bi bi-globe"></i> ${translations[lang]["nav-home"]}`;
+            document.querySelector('.navbar-nav [href="#muc-luong"]').innerHTML = `<i class="bi bi-briefcase-fill"></i> ${translations[lang]["nav-benefits"]}`;
+            document.querySelector('.navbar-nav [href="#thoi-gian-lam-viec"]').innerHTML = `<i class="bi bi-building-fill"></i> ${translations[lang]["nav-office"]}`;
+            document.querySelector('.navbar-nav [href="#che-do-coc"]').innerHTML = `<i class="bi bi-shield-fill-check"></i> ${translations[lang]["nav-deposit"]}`;
+            document.querySelector('.navbar-nav [href="#lien-he"]').innerHTML = `<i class="bi bi-headphones"></i> ${translations[lang]["nav-contact"]}`;
+
+            // Update language display in dropdown toggle
+            const dropdownToggle = document.getElementById('navbarDropdown');
+            let flagSrc = "https://flagicons.lipis.dev/flags/4x3/vn.svg";
+            let langText = "Ngôn ngữ";
+            if (lang === "zh-CN") {
+                flagSrc = "https://flagicons.lipis.dev/flags/4x3/cn.svg";
+                langText = "中文 (Tiếng Trung)";
+            } else if (lang === "km-KH") {
+                flagSrc = "https://flagicons.lipis.dev/flags/4x3/kh.svg";
+                langText = "ភាសាខ្មែរ (Tiếng Khmer)";
+            } else { // Default to Vietnamese
+                flagSrc = "https://flagicons.lipis.dev/flags/4x3/vn.svg";
+                langText = "Tiếng Việt";
+            }
+            dropdownToggle.innerHTML = `<img src="${flagSrc}" alt="${langText} Flag" class="lang-flag">${langText}`;
+
+             // Update document title
+             document.title = "Tuyển dụng tại Tập đoàn 99 - Chế độ Lương và Phúc lợi";
+             if (lang === "zh-CN") {
+                 document.title = "99集团招聘 - 薪资福利政策";
+             } else if (lang === "km-KH") {
+                 document.title = "ការជ្រើសរើសបុគ្គលិករបស់ក្រុមហ៊ុន 99 - របបប្រាក់ខែ និងអត្ថប្រយោជន៍";
+             }
+        }
+
+        // Event listeners for language selection
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.addEventListener('click', function(event) {
+                event.preventDefault();
+                const lang = this.dataset.lang || 'vi'; // Default to 'vi' if no data-lang
+                setLanguage(lang);
+            });
+        });
+
+        // Set default language on page load (e.g., Vietnamese)
+        setLanguage('vi');
+    </script>
+</body>
+</html>
